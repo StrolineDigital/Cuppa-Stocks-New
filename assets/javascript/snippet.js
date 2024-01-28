@@ -9,7 +9,8 @@
 
 var getNewsSnippets = async () => {
             // API URL is set with correct endpoints
-            var apiUrl = `https://api.marketaux.com/v1/news/all?published_after=2024-01&limit=3&sentiment_gte=0&language=en&api_token=bNXai2UqVdw7PkInBynoRWMSRiJhtz17KmkjxKuj`;
+
+         var apiUrl = `https://api.marketaux.com/v1/news/all?published_after=2024-01&limit=3&sentiment_gte=0&language=en&api_token=bNXai2UqVdw7PkInBynoRWMSRiJhtz17KmkjxKuj`;
 
             try {
                 // Used to call the Marketaux API URL
@@ -36,10 +37,11 @@ function showMeNewsSnippets(newsData) {
         let snippetContainer = document.createElement("div");
         snippetContainer.classList.add("snippet-container");
 
-        // Creates a span to display the snippet text
-        let snippetElement = document.createElement("span");
-        snippetElement.textContent = item.snippet;
+        // Creates a div to hold the heading and short description for each article
+        let snippetElement = document.createElement("div");
+        snippetElement.innerHTML = `<h3 class="mt-3 mb-1 has-text-weight-bold is-size-5">${item.title}</h3><p class="my-0">${item.snippet}</p>`;
 
+        // Read more link and icon
         // Creates a "Read More" link for each snippet
         let readMoreLink = document.createElement("a");
         readMoreLink.href = item.url;
@@ -47,6 +49,17 @@ function showMeNewsSnippets(newsData) {
         readMoreLink.textContent = "Read More";
         readMoreLink.classList.add("read-more"); // Adds the class for styling
 
+        // Creates the Font Awesome icon element
+        let iconElement = document.createElement("i");
+        iconElement.classList.add("fa-solid", "fa-arrow-right-to-bracket");
+
+        // Appends the icon element after the "Read More" link
+        readMoreLink.appendChild(iconElement);
+
+        // Adds the class for styling to the "Read More" link
+        readMoreLink.classList.add("read-more");
+
+        //favorite button
         // Creates the favorite button dynamically
         let favoriteButton = document.createElement("button");
         favoriteButton.innerHTML = '<i class="fas fa-heart favorite-btn"></i>';

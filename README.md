@@ -15,3 +15,23 @@ Many helpful tips were found on https://stackoverflow.co/ and https://www.w3scho
 
 ## License
 Please refer to LICENSE in the repo.
+
+## Temp code holder for Article Extractor
+var requestOptions = {
+    method: 'GET'
+};
+
+var params = {
+    api_token: '09NRsJYrLiXZ2nk8UCVXCmdqhrVbu5WGjQMybz3c',
+    url: 'https://edition.cnn.com/2022/09/12/world/james-webb-space-telescope-image-orion-nebula-scn/index.html'
+};
+
+var esc = encodeURIComponent;
+var query = Object.keys(params)
+    .map(function(k) {return esc(k) + '=' + esc(params[k]);})
+    .join('&');
+
+fetch("https://api.articlextractor.com/v1/extract?" + query, requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
