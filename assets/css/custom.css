@@ -22,6 +22,9 @@ sky blue storm #697eab (define as custom variable)
         text-align: center;
     }
     
+   body {
+        background-image: url(../images/newsprint.png);
+       }   
 
 .default-hide {
     display: none;
@@ -30,6 +33,11 @@ sky blue storm #697eab (define as custom variable)
 
 .show {
     display: block;
+}
+
+#top-story {
+    padding-top: 0;
+    padding-bottom: 0;
 }
 
 
@@ -88,9 +96,6 @@ li.is-active span {
         background-color: var(--oil);
     }
 
-    span.icon {
-        
-    }
 
     #commodity-price-display {
         margin: 0;
@@ -113,8 +118,6 @@ li.is-active span {
         border-width: 5px;
         max-height:fit-content;
     }
-    
-    /*Text color in the tabs*/
     
 
     
@@ -227,21 +230,27 @@ li.is-active span {
     margin-left: .25em;
 }
 
-#favorite {
-    font-size: 30px; 
+.favorite-btn {
+    background-color:var(--corn);
+    color:var(--oil);
+    border-color:var(--wheat-dark);
+    margin-top: .5em;
+    padding-left: .5em;
 }
-.modal {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 20px;
-    background-color: #fff;
+
+.favorite-btn i {
+    color: var(--copper);
+}
+
+#favorite {
+    font-size: 1.25rem;
+    font-weight: 700; 
+}
+.modal-custom {
     border: 1px solid #ccc;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    z-index: 1;
-}
+    /*z-index: 1;*/
+} 
     
     
 

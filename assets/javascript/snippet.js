@@ -10,7 +10,7 @@
 var getNewsSnippets = async () => {
             // API URL is set with correct endpoints
 
-         var apiUrl = `https://api.marketaux.com/v1/news/all?published_after=2024-01&limit=3&sentiment_gte=0&language=en&api_token=bNXai2UqVdw7PkInBynoRWMSRiJhtz17KmkjxKuj`;
+         var apiUrl = `https://api.marketaux.com/v1/news/all?published_after=2024-01&limit=3&sentiment_gte=0&language=en&countries=us&api_token=bNXai2UqVdw7PkInBynoRWMSRiJhtz17KmkjxKuj`;
 
             try {
                 // Used to call the Marketaux API URL
@@ -37,10 +37,6 @@ function showMeNewsSnippets(newsData) {
         let snippetContainer = document.createElement("div");
         snippetContainer.classList.add("snippet-container");
 
-        // Creates a div to hold the heading and short description for each article
-        let snippetElement = document.createElement("div");
-        snippetElement.innerHTML = `<h3 class="mt-3 mb-1 has-text-weight-bold is-size-5">${item.title}</h3><p class="my-0">${item.snippet}</p>`;
-
         // Read more link and icon
         // Creates a "Read More" link for each snippet
         let readMoreLink = document.createElement("a");
@@ -53,16 +49,20 @@ function showMeNewsSnippets(newsData) {
         let iconElement = document.createElement("i");
         iconElement.classList.add("fa-solid", "fa-arrow-right-to-bracket");
 
+        
+        // Creates a div to hold the heading and short description for each article
+        let snippetElement = document.createElement("div");
+        snippetElement.innerHTML = `<h3 class="mt-3 mb-1 has-text-weight-bold is-size-5 is-line-height-6">${item.title}</h3><p class="my-0 has-text-left">${item.description}</p>`;
+        // Appends the read more link to the end of the paragraph
+        //snippetElement.appendChild(readMoreLink);
         // Appends the icon element after the "Read More" link
         readMoreLink.appendChild(iconElement);
 
-        // Adds the class for styling to the "Read More" link
-        readMoreLink.classList.add("read-more");
 
         //favorite button
         // Creates the favorite button dynamically
         let favoriteButton = document.createElement("button");
-        favoriteButton.innerHTML = '<i class="fas fa-heart favorite-btn"></i>';
+        favoriteButton.innerHTML = '<p class="has-text-weight-semibold">Save to Favorites <i class="fas fa-heart favorite-btn"></i></p>';
         favoriteButton.classList.add("favorite-btn");
         favoriteButton.onclick = () => {
             addToFavorites(item);
@@ -71,7 +71,7 @@ function showMeNewsSnippets(newsData) {
 
         // Appends elements to the snippet container in order to dynamically expand the list of snippets
         snippetContainer.appendChild(snippetElement);
-        snippetContainer.appendChild(document.createElement("br"));
+       // snippetContainer.appendChild(document.createElement("br"));
         snippetContainer.appendChild(readMoreLink);
         snippetContainer.appendChild(document.createElement("br"));
         snippetContainer.appendChild(favoriteButton);
@@ -85,9 +85,10 @@ function showMeNewsSnippets(newsData) {
         // Function to show modal when favorite button is clicked
         function showModal() {
             var modal = document.getElementById("myModal");
-            modal.style.display = "block";
+           // modal.style.display = "block";
+            modal.classList.add('is-active');
             setTimeout(() => {
-                modal.style.display = "none";
+                modal.classList.remove('is-active');
             }, 2000); // Hide modal after 2 seconds
         }
 
@@ -99,7 +100,7 @@ function showMeNewsSnippets(newsData) {
             // Checks if the item is already in favorites and prevents duplicate from being added
             if (!favorites.some(fav => fav.url === item.url)) {
                 // Adds the article to the favorites section using article description and url data taken from the JSON object
-                favorites.push({ description: item.description, url: item.url });
+                favorites.push({ description: item.title, url: item.url });
                 // Update local storage with the newest favorites 
                 localStorage.setItem('favorites', JSON.stringify(favorites));
                 // Refreshes the favorites container with updated favorites
@@ -118,8 +119,8 @@ function showMeNewsSnippets(newsData) {
                 let favoriteContainer = document.createElement("div");
                 favoriteContainer.id = `favorite-${index + 1}`;
 
-                // Creates a span to display the favorite article's description
-                let favoriteElement = document.createElement("span");
+                // Creates a container to display the favorite article's title
+                let favoriteElement = document.createElement("container");
                 favoriteElement.innerHTML = fav.description;
 
                 // Creates a "Read More" link to allow the user to read the full article

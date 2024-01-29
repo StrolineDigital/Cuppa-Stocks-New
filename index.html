@@ -13,10 +13,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,700&display=swap" rel="stylesheet">
 </head>
-<div id="myModal" class="modal">
-  <p>Added to favorites!</p>
-</div>
-<body class="has-text-centered has-background-light">
+
+<body class="has-text-centered has-background-light  align-content-center mx-auto>
 
         <!--Cuppa Stocks Masthead-->
         <header id="logo-header" class="container is-flex p-3 has-text-centered">
@@ -26,12 +24,12 @@
               </div>
               <p class="subtitle p-3 mb-2 is-italic">Your morning ritual, with a shot of market insights</p>
               <!--reference date.js-->
-              <div id="current-day" class="py-1 mb-3 min-height-100 has-text-centered has-text-dark"></div>
+              <div id="current-day" class="py-1 mb-2 is-size-5 has-text-centered has-text-dark is-uppercase"></div>
             </div>
           </header>
 
         <!--Main Section-->
-        <main class="container p-3 is-justify-content-center">
+        <main class="container p-3 mx-auto">
             
             <!--For the sake of establishing columns-->
             <div class="columns">
@@ -263,9 +261,10 @@
           
             <h2 class="is-size-3 has-text-weight-bold"><i class="fa-solid fa-heart-circle-check"></i></h2>
             <h2 class="block is-size-4 has-text-weight-bold">My Saved Favorite News</h2>
-            <div id="favorite" class="box mx-5"></div>
-          <button onclick="clearFavorites()">Clear All</button>
-          
+            <button onclick="clearFavorites()">Clear All</button>      
+            <div id="favorite" class="box mx-5">
+            </div>
+       
         </section>
       </div> <!--closes the stories area div-->
 </section>
@@ -273,9 +272,21 @@
 </div>
 
         </main>
+
          <script src="assets/javascript/stocks.js"></script>
     <script src="assets/javascript/snippet.js"></script>
         <script src="./assets/javascript/date.js"></script>
         <script src="./assets/javascript/panel-visibility.js"></script>
+
+  <!--modal only shows when the button to save to favorites is clicked-->
+<div id="myModal" class="modal">
+  <div class="modal-background">
+  </div>
+  <div class="modal-content">
+    <div class="box">
+      <p class="m-auto is-size-3-desktop is-size-5-mobile has-text-semibold">Article Saved to Favorites!</p>
+    </div>
+  </div>
+</div>
 </body>
 </html>
